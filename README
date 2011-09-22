@@ -1,2 +1,25 @@
 Das ist ein README geändert von Niki Hausammann
 Und hier kommt die Änderung von Florian.
+
+So.
+
+Projektbeschrieb:
+
+Source Control-Zusammenarbeit:
+
+- git natürlich!
+- Chef-Repo git://github.com/NikiH/KnallFixHermes.git
+
+Build Tool:
+
+- maven!
+
+Sicherstellung der Kompilierfähigkeit:
+
+- Relevant fürs Builden ist das pom. Wir sehen vor, einen git precommit-hook zu bauen, der jeweils mvn compile sausenlässt.
+
+Laufenlassen der Testsuite:
+
+mvn test
+
+
