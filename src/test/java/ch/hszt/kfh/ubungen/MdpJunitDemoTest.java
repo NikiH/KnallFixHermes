@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class MdpJunitDemoTests {
+public class MdpJunitDemoTest {
 	
 	private IMdpJunitDemo instance = new MdpJunitDemoImpl();
 	
