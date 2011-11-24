@@ -1,0 +1,4 @@
+[IModulator]^[VolumeModulator]
+[IModulator]^[FastFourierModulator]^[PitchShiftModulator]
+[FastFourierModulator]^[PitchShiftModulator]
+[FastFourierModulator]^[TimeStretchModulator]
