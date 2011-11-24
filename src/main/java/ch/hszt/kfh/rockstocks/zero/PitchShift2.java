@@ -1,4 +1,4 @@
-package ch.hszt.kfh.rockstocks;
+package ch.hszt.kfh.rockstocks.zero;
 
 import java.util.Arrays;
 

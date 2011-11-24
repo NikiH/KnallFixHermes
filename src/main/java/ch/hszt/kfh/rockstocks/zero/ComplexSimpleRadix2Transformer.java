@@ -1,4 +1,4 @@
-package ch.hszt.kfh.rockstocks;
+package ch.hszt.kfh.rockstocks.zero;
 
 /* 
  * Part of this code is Copyright (c) 1996 S.M.Bernsee under The Wide Open License.
