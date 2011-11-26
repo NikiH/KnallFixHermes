@@ -1,0 +1,8 @@
+[ITimeSeriesProvider]^-.-[HistoricalSmiSimulationSeriesProvider]
+[IHistory]^-.-[History]
+[HistoricalSmiSimulationSeriesProvider]uses -.->[IHistory]
+[HistoricalSmiSimulationSeriesProvider]++-[HistoricalSmiSimulationSeries]
+[HistoricalSmiSimulationSeries]uses -.->[IHistory]
+[HistoricalSmiSimulationSeries]^[HistoricalSmiPriceSimulationSeries]
+[HistoricalSmiSimulationSeries]^[HistoricalSmiTurnoverSimulationSeries]
+
