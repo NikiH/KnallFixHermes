@@ -1,4 +1,4 @@
-package ch.hszt.kfh.rockstocks;
+package ch.hszt.kfh.rockstocks.series;
 
 import java.util.List;
 
@@ -21,11 +21,9 @@ public interface ITimeSeriesProvider {
 	List<ITimeSeries> getAvailableSeries();
 	
 	/**
-	 * Liefert einen Datenpunkt auf einer gegebenen Zeitreihe für einen bestimmten Zeitpunkt.
-	 * @param series
-	 * @param time
+	 * Liefert den Namen der Zeitreihe.
 	 * @return
 	 */
-	double getValue(ITimeSeries series, int time);
-
+	String getName();
+	
 }
