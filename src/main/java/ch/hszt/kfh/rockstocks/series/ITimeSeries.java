@@ -12,10 +12,9 @@ public interface ITimeSeries {
 
 	/**
 	 * Liefert einen Datenpunkt auf einer gegebenen Zeitreihe für einen bestimmten Zeitpunkt.
-	 * @param series
 	 * @param time
 	 * @return
 	 */
-	double getValue(ITimeSeries series, int time);
+	double getValue(int time);
 
 }
