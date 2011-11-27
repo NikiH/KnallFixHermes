@@ -54,6 +54,26 @@ public class HistoricalSmiSimulationSeriesProvider implements ITimeSeriesProvide
 		return "Simulation mit historischen Daten des SMI";
 	}
 	
+	public ITimeSeries getPriceSeriesForIsin(String isin) {
+		for (ITimeSeries s : series) {
+			if (s instanceof HistoricalSmiPriceSimulationSeries) {
+				if (((HistoricalSmiPriceSimulationSeries)s).getIsin() == isin) {
+					return s;
+				}
+			}
+		}
+		return null;
+	}
 	
+	public ITimeSeries getTurnoverSeriesForIsin(String isin) {
+		for (ITimeSeries s : series) {
+			if (s instanceof HistoricalSmiTurnoverSimulationSeries) {
+				if (((HistoricalSmiTurnoverSimulationSeries)s).getIsin() == isin) {
+					return s;
+				}
+			}
+		}
+		return null;
+	}
 
 }

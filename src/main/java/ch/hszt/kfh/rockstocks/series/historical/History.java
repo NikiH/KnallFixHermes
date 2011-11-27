@@ -59,6 +59,17 @@ public class History implements IHistory {
 		histories.put("CH0048265513", new HistoryCollection(40546, "TRANSOCEAN N"));
 		histories.put("CH0102484968", new HistoryCollection(40546, "JULIUS BAER N"));
 		histories.put("US87162M4096", new HistoryCollection(40546, "SYNTHES N"));
+		histories.put("CH0119784319", new HistoryCollection(40546, "??"));
+		histories.put("CH0038459415", new HistoryCollection(40546, "??"));
+		histories.put("CH0043692257", new HistoryCollection(40546, "??"));
+		histories.put("CH0119210984", new HistoryCollection(40546, "??"));
+		histories.put("CH0038838394", new HistoryCollection(40546, "??"));
+		histories.put("CH0126881280", new HistoryCollection(40546, "??"));
+
+		histories.put("CH0126645776", new HistoryCollection(40546, "??"));
+		histories.put("CH0126881561", new HistoryCollection(40546, "??"));
+		histories.put("CH0024638196", new HistoryCollection(40546, "??"));
+		histories.put("CH0107618925", new HistoryCollection(40546, "??"));
 
 		// Historien laden
 		loadData201101();

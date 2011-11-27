@@ -45,8 +45,8 @@ public class AudioFileSource implements ISource {
 			bytesRead = stream.read(buffer, 0, buffer.length);
 			
 			if (bytesRead != -1) {
+				totalBytesRead += bytesRead;
 				return normalizer.normalize(buffer);
-				
 			}
 			return null;
 			
@@ -64,7 +64,7 @@ public class AudioFileSource implements ISource {
 
 	@Override
 	public boolean isDone() {
-		return bytesRead != -1;
+		return bytesRead == -1;
 	}
 
 }

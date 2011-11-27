@@ -22,7 +22,7 @@ public class AudioLineDrain implements IDrain {
 	private SourceDataLine line;
 
 	public AudioLineDrain() {
-		AudioFormat format = new AudioFormat(44100, 16, 2, true, true);
+		AudioFormat format = new AudioFormat(44100, 16, 2, true, false);
 		
 		normalizer = SampleNormalizerFactory.create(format);
 		
@@ -30,6 +30,7 @@ public class AudioLineDrain implements IDrain {
 		try {
 			line = (SourceDataLine)AudioSystem.getLine(info);
 			line.open();
+			line.start();
 			
 		} catch (LineUnavailableException e) {
 			// TODO Auto-generated catch block

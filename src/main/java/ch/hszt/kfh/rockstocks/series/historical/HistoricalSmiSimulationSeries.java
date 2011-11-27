@@ -30,7 +30,7 @@ abstract class HistoricalSmiSimulationSeries implements ITimeSeries {
 	}
 	
 	/**
-	 * Liefert denn Datenreihennamen (unabhängig vom Instrument).
+	 * Liefert den Datenreihennamen (unabhängig vom Instrument).
 	 * @return
 	 */
 	protected abstract String getSeriesDataTypeName();

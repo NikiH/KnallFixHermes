@@ -12,7 +12,7 @@ public class SampleNormalizerFactory {
 	
 	public static ISampleNormalizer create(AudioFormat format) {
 		
-		if (format.isBigEndian() && format.getSampleSizeInBits() == 16) {
+		if (!format.isBigEndian() && format.getSampleSizeInBits() == 16) {
 			return new BigEndian16BitNormalizer();
 		}
 		
