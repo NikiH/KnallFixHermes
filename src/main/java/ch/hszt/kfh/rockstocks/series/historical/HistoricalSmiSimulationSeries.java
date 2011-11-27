@@ -46,6 +46,8 @@ abstract class HistoricalSmiSimulationSeries implements ITimeSeries {
 	public String getName() {
 		return history.get(isin).getInstrumentName() + " - " + getSeriesDataTypeName();
 	}
+	
+	private double cachedValue = 1.0;
 
 	@Override
 	public double getValue(int time) {
@@ -53,11 +55,19 @@ abstract class HistoricalSmiSimulationSeries implements ITimeSeries {
 		HistoryRecord r0 = history.get(isin).getRecord(0);
 		HistoryRecord r = history.get(isin).getRecord(time);
 		
-		if (r0 == null || r == null) {
+		if (r0 == null) {
 			return 1;
 		}
+		if (r == null) {
+			System.out.println(time + ": " + cachedValue + " (cached)");
+			return cachedValue;
+		}
 		
-		return selectData(r) / selectData(r0);
+		double value = selectData(r) / selectData(r0);
+		
+		cachedValue = value;
+		System.out.println(time + ": " + value);
+		return value;
 	}
 
 }

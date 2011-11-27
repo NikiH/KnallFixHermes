@@ -7,7 +7,7 @@ package ch.hszt.kfh.rockstocks.normalizers;
  * @author florian
  *
  */
-public class BigEndian16BitNormalizer implements ISampleNormalizer {
+public class LittleEndian16BitNormalizer implements ISampleNormalizer {
 
 	private static final int BYTES = 2;
 	
@@ -25,7 +25,10 @@ public class BigEndian16BitNormalizer implements ISampleNormalizer {
 	public byte[] denormalize(double samples[]) {
 		byte[] output = new byte[samples.length * BYTES];
 		for (int i = 0; i < samples.length; i++) {
-			int sm = (int)Math.round(samples[i] * 32767.0);
+
+			// hier scheint noch ein problemchen zu stecken.
+			// Math.floor() führt aber zu massiv weniger übersteuern als Math.round().
+			int sm = (int)Math.floor(Math.min(1.0, Math.max(-1.0, samples[i])) * 32767.0);
 			// klappt momentan nur für BYTES == 2...
 			output[i*2] = (byte)(sm & 0xFF);
 			output[i*2 + 1] = (byte) ((sm >> 8) & 0xFF);
