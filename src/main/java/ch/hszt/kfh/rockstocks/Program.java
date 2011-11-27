@@ -7,6 +7,7 @@ import ch.hszt.kfh.rockstocks.modulators.IModulator;
 import ch.hszt.kfh.rockstocks.modulators.PitchShiftModulator;
 import ch.hszt.kfh.rockstocks.series.historical.HistoricalSmiSimulationSeriesProvider;
 import ch.hszt.kfh.rockstocks.sources.AudioFileSource;
+import ch.hszt.kfh.rockstocks.sources.SineWaveSource;
 
 public class Program {
 
