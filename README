@@ -21,4 +21,12 @@ Laufenlassen der Testsuite:
 
 mvn test
 
+Checkout:
+git pull
+
+Checkin:
+git add -A
+git commit -m 'hier message'
+git push
+
 
