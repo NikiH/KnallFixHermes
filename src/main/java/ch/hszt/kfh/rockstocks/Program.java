@@ -19,8 +19,8 @@ public class Program {
 		File file = new File("/home/florian/host/Track01.wav");
 		
 		Player player = new Player();
-		player.setSource(new AudioFileSource(file));
-		//player.setSource(new SineWaveSource());
+		//player.setSource(new AudioFileSource(file));
+		player.setSource(new SineWaveSource());
 		player.setDrain(new AudioLineDrain());
 		
 		IModulator mod = new PitchShiftModulator();
@@ -28,7 +28,7 @@ public class Program {
 		player.getModulators().add(mod);
 		
 		player.play();
-	
+					
 	}
-
+	
 }
