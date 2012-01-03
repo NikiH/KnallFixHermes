@@ -135,19 +135,19 @@ public class FileDialog extends javax.swing.JDialog {
 				{
 					playButton = new JButton();
 					getContentPane().add(playButton);
-					playButton.setIcon(new ImageIcon("/home/slenherr/workspace/KnallFixHermes/src/main/resources/gui/play-icon.png"));
+					playButton.setIcon(new ImageIcon("src/main/resources/gui/play-icon.png"));
 					playButton.setBounds(16, 50, 60, 44);
 				}
 				{
 					stopButton = new JButton();
 					getContentPane().add(stopButton);
-					stopButton.setIcon(new ImageIcon("/home/slenherr/workspace/KnallFixHermes/src/main/resources/gui/stop-icon.png"));
+					stopButton.setIcon(new ImageIcon("src/main/resources/gui/stop-icon.png"));
 					stopButton.setBounds(90, 50, 60, 44);
 				}
 				{
 					pauseButton = new JButton();
 					getContentPane().add(pauseButton);
-					pauseButton.setIcon(new ImageIcon("/home/slenherr/workspace/KnallFixHermes/src/main/resources/gui/pause-icon.png"));
+					pauseButton.setIcon(new ImageIcon("src/main/resources/gui/pause-icon.png"));
 					pauseButton.setBounds(164, 50, 60, 44);
 				}
 				{
