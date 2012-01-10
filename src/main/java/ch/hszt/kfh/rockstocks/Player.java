@@ -65,7 +65,9 @@ public class Player {
 	 */
 	public void play() {
 		
-		while (!source.isDone()) {
+		isPause = false;
+		
+		while (!source.isDone() && !isPause) {
 			
 			double[] data = source.send();
 			int time = source.getTime();
@@ -80,5 +82,12 @@ public class Player {
 		
 		
 	}
+	
+	private boolean isPause = false;
+	
+	public void pause() {
+		isPause = true;
+	}
 
+	
 }

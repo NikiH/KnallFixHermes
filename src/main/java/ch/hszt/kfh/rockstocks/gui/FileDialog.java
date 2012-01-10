@@ -18,6 +18,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import ch.hszt.kfh.rockstocks.Player;
+import ch.hszt.kfh.rockstocks.drains.AudioLineDrain;
+import ch.hszt.kfh.rockstocks.modulators.IModulator;
+import ch.hszt.kfh.rockstocks.modulators.PitchShiftModulator;
+import ch.hszt.kfh.rockstocks.series.TimeSeriesProviderRegistry;
+import ch.hszt.kfh.rockstocks.series.historical.HistoricalSmiSimulationSeriesProvider;
+import ch.hszt.kfh.rockstocks.sources.AudioFileSource;
+
 public class FileDialog extends javax.swing.JDialog {
 	
 	/**
@@ -42,6 +50,8 @@ public class FileDialog extends javax.swing.JDialog {
 			e.printStackTrace();
 		}
 	}
+
+
 
 	private static JFrame frame;
 
@@ -84,8 +94,18 @@ public class FileDialog extends javax.swing.JDialog {
 		initGUI();
 	}
 
+	Player player = new Player();
+	
+	IModulator mod = new PitchShiftModulator();
+	
 	private void initGUI() {
 		try {
+			player.setDrain(new AudioLineDrain());
+
+			mod.setTimeSeries(new HistoricalSmiSimulationSeriesProvider().getPriceSeriesForIsin("CH0012255151"));
+			player.getModulators().add(mod);
+
+			TimeSeriesProviderRegistry registry = new TimeSeriesProviderRegistry();
 			getContentPane().setLayout(null);
 			{
 				menuBar = new JMenuBar();
@@ -124,6 +144,7 @@ public class FileDialog extends javax.swing.JDialog {
 						int retVal = fileChooser.showOpenDialog(frame);
 						if (retVal == JFileChooser.APPROVE_OPTION){
 							musicFile.setText(fileChooser.getSelectedFile().getAbsolutePath());
+							player.setSource(new AudioFileSource(fileChooser.getSelectedFile()));
 						}
 					}
 				});
@@ -137,6 +158,22 @@ public class FileDialog extends javax.swing.JDialog {
 					getContentPane().add(playButton);
 					playButton.setIcon(new ImageIcon("src/main/resources/gui/play-icon.png"));
 					playButton.setBounds(16, 50, 60, 44);
+					playButton.addActionListener(new ActionListener()  {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							
+							new Thread(new Runnable() {
+
+								@Override
+								public void run() {
+									player.play();
+								}
+								
+							}).start();
+							
+						}
+					});
 				}
 				{
 					stopButton = new JButton();
@@ -149,6 +186,13 @@ public class FileDialog extends javax.swing.JDialog {
 					getContentPane().add(pauseButton);
 					pauseButton.setIcon(new ImageIcon("src/main/resources/gui/pause-icon.png"));
 					pauseButton.setBounds(164, 50, 60, 44);
+					pauseButton.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							player.pause();
+						}
+					});
 				}
 				{
 					modulationLabel = new JLabel("Modulation:");
@@ -176,11 +220,11 @@ public class FileDialog extends javax.swing.JDialog {
 					tonartLabel.setBounds(16, 208, 79, 16);
 				}
 				{
-					ComboBoxModel pitchDataRowModel = new DefaultComboBoxModel(
-							new String[] { "Item One", "Item Two" });
+//					ComboBoxModel pitchDataRowModel = new DefaultComboBoxModel(
+//							new String[] { "Item One", "Item Two" });
 					pitchDataRow = new JComboBox();
 					getContentPane().add(pitchDataRow);
-					pitchDataRow.setModel(pitchDataRowModel);
+					pitchDataRow.setModel(registry.getModel());
 					pitchDataRow.setBounds(90, 119, 83, 26);
 				}
 				{
