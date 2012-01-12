@@ -22,6 +22,7 @@ import ch.hszt.kfh.rockstocks.Player;
 import ch.hszt.kfh.rockstocks.drains.AudioLineDrain;
 import ch.hszt.kfh.rockstocks.modulators.IModulator;
 import ch.hszt.kfh.rockstocks.modulators.PitchShiftModulator;
+import ch.hszt.kfh.rockstocks.series.ITimeSeriesProvider;
 import ch.hszt.kfh.rockstocks.series.TimeSeriesProviderRegistry;
 import ch.hszt.kfh.rockstocks.series.historical.HistoricalSmiSimulationSeriesProvider;
 import ch.hszt.kfh.rockstocks.sources.AudioFileSource;
@@ -105,7 +106,7 @@ public class FileDialog extends javax.swing.JDialog {
 			mod.setTimeSeries(new HistoricalSmiSimulationSeriesProvider().getPriceSeriesForIsin("CH0012255151"));
 			player.getModulators().add(mod);
 
-			TimeSeriesProviderRegistry registry = new TimeSeriesProviderRegistry();
+			final TimeSeriesProviderRegistry registry = new TimeSeriesProviderRegistry();
 			getContentPane().setLayout(null);
 			{
 				menuBar = new JMenuBar();
@@ -180,6 +181,14 @@ public class FileDialog extends javax.swing.JDialog {
 					getContentPane().add(stopButton);
 					stopButton.setIcon(new ImageIcon("src/main/resources/gui/stop-icon.png"));
 					stopButton.setBounds(90, 50, 60, 44);
+					stopButton.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent arg0) {
+							player.stop();
+							
+						}
+					});
 				}
 				{
 					pauseButton = new JButton();
@@ -226,6 +235,14 @@ public class FileDialog extends javax.swing.JDialog {
 					getContentPane().add(pitchDataRow);
 					pitchDataRow.setModel(registry.getModel());
 					pitchDataRow.setBounds(90, 119, 83, 26);
+					pitchDataRow.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent arg0) {
+							pitchData.setModel(registry.getModel((ITimeSeriesProvider)pitchDataRow.getSelectedItem()));
+						}
+						
+					});
 				}
 				{
 					ComboBoxModel tempoDataRowModel = new DefaultComboBoxModel(
@@ -253,11 +270,8 @@ public class FileDialog extends javax.swing.JDialog {
 					tonartComboBox.setBounds(90, 203, 83, 26);
 				}
 				{
-					ComboBoxModel pitchDataModel = new DefaultComboBoxModel(
-							new String[] { "Item One", "Item Two" });
 					pitchData = new JComboBox();
 					getContentPane().add(pitchData);
-					pitchData.setModel(pitchDataModel);
 					pitchData.setBounds(198, 119, 83, 26);
 				}
 				{

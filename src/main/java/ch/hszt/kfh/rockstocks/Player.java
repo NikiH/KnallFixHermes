@@ -88,6 +88,13 @@ public class Player {
 	public void pause() {
 		isPause = true;
 	}
+	
+	public void stop() {
+		isPause = true;
+		if (source != null) {
+			source.rewind();
+		}
+	}
 
 	
 }

@@ -38,4 +38,11 @@ public class SineWaveSource implements ISource {
 		return false;
 	}
 
+	@Override
+	public void rewind() {
+		samplesSent = 0;
+		moduloOffset = 0;
+		
+	}
+
 }

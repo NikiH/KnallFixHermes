@@ -29,6 +29,11 @@ abstract class HistoricalSmiSimulationSeries implements ITimeSeries {
 		this.history = history;
 	}
 	
+	
+	public String toString() {
+		return getName();
+	}
+	
 	/**
 	 * Liefert den Datenreihennamen (unabhängig vom Instrument).
 	 * @return

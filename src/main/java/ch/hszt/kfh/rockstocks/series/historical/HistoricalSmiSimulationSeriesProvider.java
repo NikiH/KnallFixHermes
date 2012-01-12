@@ -11,7 +11,7 @@ public class HistoricalSmiSimulationSeriesProvider implements ITimeSeriesProvide
 	private IHistory history;
 		
 	private ArrayList<ITimeSeries> series = new ArrayList<ITimeSeries>();
-		
+				
 	/**
 	 * Instantiiert diesen Provider. Verwendet die normale History.
 	 */
@@ -26,17 +26,24 @@ public class HistoricalSmiSimulationSeriesProvider implements ITimeSeriesProvide
 	public HistoricalSmiSimulationSeriesProvider(IHistory history) {
 		
 		this.history = history;
-		
-		// Serien herstellen
+		initSeries();
+	}
+	
+	protected void initSeries() {
+		initPriceSeries();
+		initTurnoverSeries();
+	}
+	
+	protected void initPriceSeries() {
 		for (String isin : this.history.getIsins()) {
-			
-			// Preis-Serie
 			HistoricalSmiPriceSimulationSeries priceSeries = new HistoricalSmiPriceSimulationSeries();
 			priceSeries.setIsin(isin);
 			priceSeries.setHistory(this.history);
 			series.add(priceSeries);
-			
-			// Umsatz-Serie
+		}
+	}
+	protected void initTurnoverSeries() {
+		for (String isin : this.history.getIsins()) {
 			HistoricalSmiTurnoverSimulationSeries turnoverSeries = new HistoricalSmiTurnoverSimulationSeries();
 			turnoverSeries.setIsin(isin);
 			turnoverSeries.setHistory(this.history);
@@ -74,6 +81,10 @@ public class HistoricalSmiSimulationSeriesProvider implements ITimeSeriesProvide
 			}
 		}
 		return null;
+	}
+	
+	public String toString() {
+		return getName();
 	}
 
 }

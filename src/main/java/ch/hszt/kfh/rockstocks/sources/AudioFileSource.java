@@ -21,7 +21,14 @@ public class AudioFileSource implements ISource {
 	private int bytesRead;
 	private int totalBytesRead;
 	
+	private File file;
+	
 	public AudioFileSource(File file) {
+		this.file = file;
+		openStream();
+	}
+	
+	private void openStream() {
 		try {
 			// stream holen
 			stream = AudioSystem.getAudioInputStream(file);
@@ -65,6 +72,19 @@ public class AudioFileSource implements ISource {
 	@Override
 	public boolean isDone() {
 		return bytesRead == -1;
+	}
+
+	@Override
+	public void rewind() {
+		if (stream != null) {
+			try {
+				stream.close();
+				totalBytesRead = 0;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		openStream();
 	}
 
 }

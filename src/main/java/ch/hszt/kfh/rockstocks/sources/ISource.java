@@ -25,4 +25,7 @@ public interface ISource {
 	 */
 	boolean isDone();
 	
+	
+	void rewind();
+	
 }
