@@ -21,10 +21,15 @@ public class PitchShiftModulatorFrontend extends JPanel implements IModulatorFro
 	private JCheckBox activated;
 	private TimeSeriesProviderRegistry registry;
 	
-	public PitchShiftModulatorFrontend(){
+	public PitchShiftModulatorFrontend(TimeSeriesProviderRegistry reg){
+		setRegistry(reg);
 		init();
 	};
 	
+	/**
+	 * Initialisiert das Panel
+	 * 
+	 */
 	private void init(){
 		setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
 		label = new JLabel("Pitch");
@@ -49,28 +54,48 @@ public class PitchShiftModulatorFrontend extends JPanel implements IModulatorFro
 		add(activated);
 	}
 	
+	/**
+	 * Gibt zurück, ob die Checkbox aktiviert wurde.
+	 * 
+	 * @return boolean
+	 */	
 	@Override
 	public boolean isActive() {
 		// TODO Auto-generated method stub
-		return false;
+		return activated.isEnabled();
 	}
 
+	/**
+	 * Gibt das ganze Frontend zurück.
+	 * 
+	 * @return JComponent
+	 */
 	@Override
 	public JComponent getComponent() {
 		// TODO Auto-generated method stub
-		return null;
+		return this;
 	}
 
+	/**
+	 * Setzt die registrierten Provider für die grafische Auswahl.
+	 * @param TimeSeriesProviderRegistry
+	 *
+	 */	
 	@Override
 	public void setRegistry(TimeSeriesProviderRegistry registry) {
-		// TODO Auto-generated method stub
+		this.registry = registry;
 		
 	}
 
+	/**
+	 * Gibt die aktuelle Auswahl zurück.
+	 * 
+	 * @return Object
+	 */	
 	@Override
 	public Object getSelectedItem() {
 		// TODO Auto-generated method stub
-		return null;
+		return data.getSelectedItem();
 	}
 
 }
