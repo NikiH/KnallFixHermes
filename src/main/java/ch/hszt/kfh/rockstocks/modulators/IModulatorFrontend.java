@@ -1,8 +1,6 @@
 package ch.hszt.kfh.rockstocks.modulators;
 
 import javax.swing.JComponent;
-import javax.tools.JavaCompiler;
-
 import ch.hszt.kfh.rockstocks.series.TimeSeriesProviderRegistry;
 
 /**
@@ -41,5 +39,11 @@ public interface IModulatorFrontend {
 	 * @return JComponent
 	 */	
 	public JComponent getComponent();
+	
+	/**
+	 * Initialisiert das Panel
+	 * 
+	 */
+	public void init();
 
 }

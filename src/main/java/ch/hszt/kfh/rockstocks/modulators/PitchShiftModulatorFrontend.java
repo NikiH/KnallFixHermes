@@ -30,7 +30,8 @@ public class PitchShiftModulatorFrontend extends JPanel implements IModulatorFro
 	 * Initialisiert das Panel
 	 * 
 	 */
-	private void init(){
+	@Override
+	public void init(){
 		setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
 		label = new JLabel("Pitch");
 		add(label);
